@@ -1,0 +1,29 @@
+select count(*) as patients_in_group,
+	t.range as weight_group
+from (
+  select case  
+    when weight between 0 and 9 then 0
+    when weight between 10 and 19 then 10
+  	when weight between 20 and 29 then 20
+  	when weight between 30 and 39 then 30
+  	when weight between 40 and 49 then 40
+    when weight between 50 and 59 then 50
+  	when weight between 60 and 69 then 60
+  	when weight between 70 and 79 then 70
+  	when weight between 80 and 89 then 80
+  	when weight between 90 and 99 then 90
+    when weight between 100 and 109 then 100
+  	when weight between 110 and 119 then 110
+  	when weight between 120 and 129 then 120
+  	when weight between 130 and 139 then 130
+  	when weight between 140 and 149 then 140
+    end as range
+  from patients) t
+group by weight_group
+order by weight_group desc
+/*SELECT
+  COUNT(*) AS patients_in_group,
+  FLOOR(weight / 10) * 10 AS weight_group
+FROM patients
+GROUP BY weight_group
+ORDER BY weight_group DESC;*/
